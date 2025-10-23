@@ -1,1 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2D Cartoon Sea Scene</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
+  body {
+    background: linear-gradient(to top, #87CEFA 0%, #b3e5fc 100%);
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Sky */
+  .sky {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 55%;
+    background: linear-gradient(to bottom, #90caf9 0%, #e3f2fd 100%);
+  }
+
+  /* Sun */
+  .sun {
+    position: absolute;
+    top: 80px;
+    right: 120px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #fff59d 0%, #fff176 40%, #fdd835 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 80px 20px rgba(255, 223, 0, 0.6);
+    animation: sunPulse 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes sunPulse {
+    from { transform: scale(1); opacity: 0.9; }
+    to { transform: scale(1.05); opacity: 1; }
+  }
+
+  /* Sea */
+  .sea {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45%;
+    background: linear-gradient(to bottom, #0288d1 0%, #01579b 100%);
+    overflow: hidden;
+  }
+
+  /* Wave layers */
+  .wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 100%;
+    opacity: 0.7;
+    animation: waveMove 10s linear infinite;
+  }
+
+  .wave:nth-child(1) {
+    bottom: 60px;
+    animation-duration: 14s;
+    opacity: 0.4;
+  }
+  .wave:nth-child(2) {
+    bottom: 40px;
+    animation-duration: 10s;
+    opacity: 0.6;
+  }
+  .wave:nth-child(3) {
+    bottom: 20px;
+    animation-duration: 7s;
+    opacity: 0.8;
+  }
+
+  @keyframes waveMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Clouds */
+  .cloud {
+    position: absolute;
+    top: 100px;
+    width: 120px;
+    height: 60px;
+    background: #fff;
+    border-radius: 60px;
+    animation: floatCloud 30s linear infinite;
+  }
+
+  .cloud::before,
+  .cloud::after {
+    content: '';
+    position: absolute;
+    background: #fff;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+
+  .cloud::before {
+    top: -20px;
+    left: 10px;
+  }
+
+  .cloud::after {
+    top: -10px;
+    right: 10px;
+  }
+
+  @keyframes floatCloud {
+    from { left: -150px; }
+    to { left: 110%; }
+  }
+
+  .cloud:nth-child(1) { top: 60px; animation-duration: 45s; opacity: 0.9; }
+  .cloud:nth-child(2) { top: 120px; animation-duration: 55s; opacity: 0.8; animation-delay: 10s; }
+  .cloud:nth-child(3) { top: 90px; animation-duration: 65s; opacity: 0.7; animation-delay: 20s; }
+
+  /* Seagulls */
+  .bird {
+    position: absolute;
+    top: 180px;
+    left: -50px;
+    width: 40px;
+    height: 20px;
+    border-top: 3px solid #333;
+    border-radius: 50%;
+    transform: rotate(10deg);
+    animation: fly 20s linear infinite;
+  }
+
+  .bird::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 20px;
+    border-top: 3px solid #333;
+    border-radius: 50%;
+    transform: rotate(-20deg);
+  }
+
+  @keyframes fly {
+    from { transform: translateX(-100px) translateY(0); }
+    to { transform: translateX(120vw) translateY(-50px); }
+  }
+
+  /* Caption */
+  .caption {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    font-family: 'Poppins', sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<div class="sky">
+  <div class="sun"></div>
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+  <div class="bird"></div>
+</div>
+
+<div class="sea">
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+</div>
+
+<div class="caption">🌤️ Peaceful 2D Sea</div>
+
+</body>
+</html>
